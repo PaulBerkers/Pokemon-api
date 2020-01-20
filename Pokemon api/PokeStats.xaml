@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="Pokemon_api.PokeStats"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pokemon_api"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBox Header="Name" IsReadOnly="True" Text="{x:Bind CurrentPokemon.Name, Mode=TwoWay}"/>
+            <TextBox Header="Url" IsReadOnly="True" Text="{x:Bind CurrentPokemon.Url, Mode=TwoWay}"/>
+        </StackPanel>
+    </Grid>
+</Page>
