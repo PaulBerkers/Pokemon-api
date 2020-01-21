@@ -17,7 +17,7 @@ namespace Pokemon_api.Assets.Classes
         public string Url { get; set; }
     }
 
-    public class Ability
+    public class Ability3
     {
 
         [JsonProperty("name")]
@@ -25,6 +25,19 @@ namespace Pokemon_api.Assets.Classes
 
         [JsonProperty("url")]
         public string Url { get; set; }
+    }
+
+    public class Ability
+    {
+
+        [JsonProperty("ability")]
+        public Ability3 Abilitys { get; set; }
+
+        [JsonProperty("is_hidden")]
+        public bool IsHidden { get; set; }
+
+        [JsonProperty("slot")]
+        public int Slot { get; set; }
     }
 
     public partial class Pokeapi

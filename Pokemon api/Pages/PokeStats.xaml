@@ -22,7 +22,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="25" />
+                            <TextBlock Text="{Binding Abilitys.Name}" HorizontalAlignment="Center" FontSize="25" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
