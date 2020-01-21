@@ -23,57 +23,41 @@ namespace Pokemon_api
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-//slimme sweetspons 
-    public sealed partial class HomePage : Page, INotifyPropertyChanged
+    public sealed partial class PokeStats : Page, INotifyPropertyChanged
     {
-
-        public Show show { get; set; } = new Show();
+        string url;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        private List<Result> _result = new List<Result>();
-
-        public List<Result> Results
-        {
-            get { return _result; }
-            set { _result = value; NotifyPropertyChanged(); }
-        }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public Result _currentpokemon = new Result();
-        //private object Show;
-
-        public HomePage()
+        public PokeStats()
         {
             this.InitializeComponent();
-            GetResults();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            url = e.Parameter.ToString();
+
+            GetAbility();
+        }
+
+        private List<Ability> _ability = new List<Ability>();
+
+        public List<Ability> Ability
+        {
+            get { return _ability; }
+            set { _ability = value; NotifyPropertyChanged(); }
         }
 
 
-        private async void GetResults()
+        private async void GetAbility()
         {
-            Results = await PokeAPIWrapper.GetResults();
-        }
-
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.Frame.Navigate(typeof(PokeStats), show);
-        }
-    }
-
-
-    public class Show
-    {
-        private string _currentpokemon;
-
-        public string CurrentPokemon
-        {
-            get { return _currentpokemon; }
-            set { _currentpokemon = value; }
+            Ability = await PokeAPIWrapper.GetAbility(url);
         }
     }
 }

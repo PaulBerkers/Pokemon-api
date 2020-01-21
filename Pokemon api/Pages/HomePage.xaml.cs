@@ -23,10 +23,12 @@ namespace Pokemon_api
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PokeStats : Page, INotifyPropertyChanged
+//slimme sweetspons 
+    public sealed partial class HomePage : Page, INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private List<Result> _result = new List<Result>();
 
         public List<Result> Results
         {
@@ -40,23 +42,26 @@ namespace Pokemon_api
         }
 
         public Result _currentpokemon = new Result();
+        //private object Show;
 
-        private List<Result> _result = new List<Result>();
-
-        public PokeStats()
+        public HomePage()
         {
             this.InitializeComponent();
+            GetResults();
         }
 
-        public Result CurrentPokemon
-        {
-            get { return _currentpokemon; }
-            set { _currentpokemon = value; NotifyPropertyChanged(); }
-        }
 
         private async void GetResults()
         {
             Results = await PokeAPIWrapper.GetResults();
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            dynamic clickedItem = e.ClickedItem;
+            string url = clickedItem.Url;
+
+            this.Frame.Navigate(typeof(PokeStats), url);
         }
     }
 }
